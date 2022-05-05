@@ -7,12 +7,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
-    permissions:
-      actions: read|write|none
-      checks: read|write|none
-      contents: read|write|none
-    
+        
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
@@ -21,6 +16,7 @@ jobs:
         JFROG_EMAIL : ${{secrets.JFROG_EMAIL}}
         JFROG_REPO : ${{secrets.JFROG_REPO}}
       run: |
+        sudo su
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         cat $HOME/.docker/config.json
         cd $HOME/.docker/
