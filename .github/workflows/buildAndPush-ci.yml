@@ -22,7 +22,7 @@ jobs:
         cat $HOME/.docker/config.json
         cd $HOME/.docker/
         ls -al
-        #jq '.auths += "Chocolate"' config.json
+        jq '.auths += "Chocolate"' config.json
         #jq '.auth += {"JFROG_REPO" += {"auth" : "JFROG_DOCKER_TOKEN", "email" : JFROG_EMAIL}}' config
         cat $HOME/.docker/config.json
         #docker login devopslv.jfrog.io
