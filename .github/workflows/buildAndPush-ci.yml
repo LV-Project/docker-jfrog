@@ -22,5 +22,6 @@ jobs:
       env:
         JFROG_DOCKER_TOKEN : ${{secrets.JFROG_DOCKER_TOKEN}}
     - run: |
-        jfrog rt ping
-        docker login devopslv.jfrog.io
+        cat ${HOME}/.jfrog/jfrog-cli.conf
+        #jfrog rt ping
+        #docker login devopslv.jfrog.io
