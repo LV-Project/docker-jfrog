@@ -11,7 +11,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
+      env:
+        JFROG_DOCKER_TOKEN : ${{secrets.JFROG_DOCKER_TOKEN}}
+        JFROG_EMAIL : ${{JFROG_EMAIL}}
+        JFROG_REPO : ${{JFROG_REPO}}
       run: |
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        cat $HOME/.docker/config.json
+        cd $HOME/.docker/
+        jq '.auth[1] |= . + {"JFROG_REPO" |= . + {"auth" : "JFROG_DOCKER_TOKEN", "email" : JFROG_EMAIL}}' inputJson
         cat $HOME/.docker/config.json
         #docker login devopslv.jfrog.io
