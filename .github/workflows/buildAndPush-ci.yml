@@ -19,6 +19,6 @@ jobs:
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         cat $HOME/.docker/config.json
         cd $HOME/.docker/
-        jq '.auth[1] += {"JFROG_REPO" += {"auth" : "JFROG_DOCKER_TOKEN", "email" : JFROG_EMAIL}}' inputJson
+        jq '.auth += {"JFROG_REPO" += {"auth" : "JFROG_DOCKER_TOKEN", "email" : JFROG_EMAIL}}' inputJson
         cat $HOME/.docker/config.json
         #docker login devopslv.jfrog.io
