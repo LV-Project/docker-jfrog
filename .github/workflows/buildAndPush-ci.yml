@@ -17,6 +17,7 @@ jobs:
         JFROG_REPO : ${{secrets.JFROG_REPO}}
       run: |
         sudo su
+        chmod +rwx $HOME/.docker/config.json
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         cat $HOME/.docker/config.json
         cd $HOME/.docker/
