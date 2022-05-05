@@ -13,8 +13,8 @@ jobs:
     - name: Build the Docker image
       env:
         JFROG_DOCKER_TOKEN : ${{secrets.JFROG_DOCKER_TOKEN}}
-        JFROG_EMAIL : ${{JFROG_EMAIL}}
-        JFROG_REPO : ${{JFROG_REPO}}
+        JFROG_EMAIL : ${{secrets.JFROG_EMAIL}}
+        JFROG_REPO : ${{secrets.JFROG_REPO}}
       run: |
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         cat $HOME/.docker/config.json
